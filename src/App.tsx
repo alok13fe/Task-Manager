@@ -31,12 +31,12 @@ export default function App() {
   }
 
   return (
-    <div className={`${context?.theme} dark:bg-black`}>
-      <Navbar />
+    <div className={`relative ${context?.theme} dark:bg-black`}>
+      <Navbar lists={lists} addList={addList} listIdx={listIdx} setListIdx={setListIdx} />
       <main className="h-[calc(100vh-52px)] bg-gray-100 dark:text-white dark:bg-gray-800">
-        <div className="pt-6 sm:px-10 xl:px-0 xl:w-6xl mx-auto flex gap-5">
+        <div className="pt-6 px-6 md:px-10 xl:px-0 xl:w-6xl mx-auto flex gap-5">
           {/* My Lists */}
-          <div className="w-3xs px-3 py-1 bg-white dark:bg-black shadow-sm">
+          <div className="w-3xs px-3 py-1 hidden md:block bg-white dark:bg-black shadow-sm">
             <p className="mb-3 text-xl font-semibold">My Lists</p>
             <div>
               {
@@ -81,7 +81,7 @@ export default function App() {
               <p className="text-xl font-semibold">{lists[listIdx]?.title}</p>
               <div className="relative">
                 <button 
-                  className="px-2 py-1 flex items-center gap-1 rounded hover:bg-white"
+                  className="px-2 py-1 flex items-center gap-1 rounded hover:bg-white dark:hover:bg-gray-700"
                   onClick={() => {setShowFilters(prev => !prev)}}
                   onBlur={() => {setShowFilters(false)}}
                 >
@@ -92,49 +92,49 @@ export default function App() {
                 </button>
                 {
                   showFilters &&
-                  <div className="absolute -left-3 p-0.5 bg-white shadow-sm rounded">
+                  <div className="absolute -right-6 p-0.5 bg-white dark:bg-black shadow-sm rounded">
                     <p 
                       className="mb-1 py-0.5 text-center font-semibold border-b border-gray-200"
                     >
                       Filter by
                     </p>
                     <p 
-                      className={`px-2 py-0.5 flex items-center gap-2 ${filter === 'all' && 'bg-gray-200'} hover:bg-gray-100`}
+                      className={`px-2 py-0.5 flex items-center gap-2 ${filter === 'all' && 'bg-gray-200'} hover:bg-gray-100 dark:hover:bg-gray-700`}
                       onMouseDown={(e) => {e.preventDefault()}}
                       onClick={() => {setFilter('all')}}
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 64 64" enableBackground="new 0 0 64 64">
-                        <line fill="none" stroke="#000000" strokeWidth="2" strokeMiterlimit="10" x1="25" y1="24" x2="47" y2="24"/>
-                        <line fill="none" stroke="#000000" strokeWidth="2" strokeMiterlimit="10" x1="25" y1="34" x2="47" y2="34"/>
-                        <line fill="none" stroke="#000000" strokeWidth="2" strokeMiterlimit="10" x1="25" y1="44" x2="47" y2="44"/>
-                        <line fill="none" stroke="#000000" strokeWidth="2" strokeMiterlimit="10" x1="25" y1="54" x2="47" y2="54"/>
-                        <line fill="none" stroke="#000000" strokeWidth="2" strokeMiterlimit="10" x1="21" y1="24" x2="17" y2="24"/>
-                        <line fill="none" stroke="#000000" strokeWidth="2" strokeMiterlimit="10" x1="21" y1="34" x2="17" y2="34"/>
-                        <line fill="none" stroke="#000000" strokeWidth="2" strokeMiterlimit="10" x1="21" y1="44" x2="17" y2="44"/>
-                        <line fill="none" stroke="#000000" strokeWidth="2" strokeMiterlimit="10" x1="21" y1="54" x2="17" y2="54"/>
-                        <polyline fill="none" stroke="#000000" strokeWidth="2" strokeMiterlimit="10" points="23,8 10,8 10,63 54,63 54,8 41,8 "/>
-                        <polygon fill="none" stroke="#000000" strokeWidth="2" strokeMiterlimit="10" points="36,5 36,1 28,1 28,5 24,5 22,13 42,13 40,5 
+                      <svg className="stroke-black dark:stroke-white" width="16px" height="16px" viewBox="0 0 64 64" enableBackground="new 0 0 64 64">
+                        <line fill="none" strokeWidth="2" strokeMiterlimit="10" x1="25" y1="24" x2="47" y2="24"/>
+                        <line fill="none" strokeWidth="2" strokeMiterlimit="10" x1="25" y1="34" x2="47" y2="34"/>
+                        <line fill="none" strokeWidth="2" strokeMiterlimit="10" x1="25" y1="44" x2="47" y2="44"/>
+                        <line fill="none" strokeWidth="2" strokeMiterlimit="10" x1="25" y1="54" x2="47" y2="54"/>
+                        <line fill="none" strokeWidth="2" strokeMiterlimit="10" x1="21" y1="24" x2="17" y2="24"/>
+                        <line fill="none" strokeWidth="2" strokeMiterlimit="10" x1="21" y1="34" x2="17" y2="34"/>
+                        <line fill="none" strokeWidth="2" strokeMiterlimit="10" x1="21" y1="44" x2="17" y2="44"/>
+                        <line fill="none" strokeWidth="2" strokeMiterlimit="10" x1="21" y1="54" x2="17" y2="54"/>
+                        <polyline fill="none" strokeWidth="2" strokeMiterlimit="10" points="23,8 10,8 10,63 54,63 54,8 41,8 "/>
+                        <polygon fill="none" strokeWidth="2" strokeMiterlimit="10" points="36,5 36,1 28,1 28,5 24,5 22,13 42,13 40,5 
                         "/>
                       </svg>
                       <span>All</span>
                     </p>
                     <p 
-                      className={`px-2 py-0.5 flex items-center gap-2 ${filter === 'pending' && 'bg-gray-200'} hover:bg-gray-100`}
+                      className={`px-2 py-0.5 flex items-center gap-2 ${filter === 'pending' && 'bg-gray-200'} hover:bg-gray-100 dark:hover:bg-gray-700`}
                       onMouseDown={(e) => {e.preventDefault()}}
                       onClick={() => {setFilter('pending')}}
                     >
-                      <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 7V12L14.5 13.5M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <svg className="stroke-black dark:stroke-white" width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 7V12L14.5 13.5M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                       <span>Pending</span>
                     </p>
                     <p 
-                      className={`px-2 py-0.5 flex items-center gap-2 ${filter === 'completed' && 'bg-gray-200'} hover:bg-gray-100`}
+                      className={`px-2 py-0.5 flex items-center gap-2 ${filter === 'completed' && 'bg-gray-200'} hover:bg-gray-100 dark:hover:bg-gray-700`}
                       onMouseDown={(e) => {e.preventDefault()}}
                       onClick={() => {setFilter('completed')}}
                     >
-                      <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M4 12.6111L8.92308 17.5L20 6.5" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <svg className="stroke-black dark:stroke-white" width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4 12.6111L8.92308 17.5L20 6.5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                       <span>Completed</span>
                     </p>
@@ -150,13 +150,14 @@ export default function App() {
                   Filtered by <span className="capitalize">{filter}</span>
                 </p>
                 <svg 
+                  className="fill-black dark:fill-white"
                   width="16px" 
                   height="16px" 
                   viewBox="0 0 1024 1024" 
                   xmlns="http://www.w3.org/2000/svg"
                   onClick={() => {setFilter('none')}}
                 >
-                  <path fill="#000000" d="M764.288 214.592 512 466.88 259.712 214.592a31.936 31.936 0 0 0-45.12 45.12L466.752 512 214.528 764.224a31.936 31.936 0 1 0 45.12 45.184L512 557.184l252.288 252.288a31.936 31.936 0 0 0 45.12-45.12L557.12 512.064l252.288-252.352a31.936 31.936 0 1 0-45.12-45.184z"/>
+                  <path d="M764.288 214.592 512 466.88 259.712 214.592a31.936 31.936 0 0 0-45.12 45.12L466.752 512 214.528 764.224a31.936 31.936 0 1 0 45.12 45.184L512 557.184l252.288 252.288a31.936 31.936 0 0 0 45.12-45.12L557.12 512.064l252.288-252.352a31.936 31.936 0 1 0-45.12-45.184z"/>
                 </svg>
               </div>
             }
